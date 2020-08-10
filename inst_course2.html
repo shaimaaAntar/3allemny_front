@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title> 3allemny</title>
+    <!--Required Meta-->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width , initial-scale=1 , shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS & js -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/hover.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/style_login.css">
+    <link rel="stylesheet" href="css/MyStyle.css">
+
+    <style>
+
+        i{
+            color: gold;
+        }
+    </style>
+</head>
+<nav  class="navbar p-0 navbar-expand-lg navbar-light fixed-top bg-dark  ">
+
+    <a class="navbar-brand" href="index.php"><h3 style="color:#cc9900; font-family: 'Arial Black';">3allemny</h3></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon color11" ></span>
+    </button>
+    <!--  nav links  -->
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto " >
+            <li class="nav-item dropdown ">
+                <a style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categeories
+                </a>
+
+                <div style="color: white;" class="dropdown-menu" aria-labelledby="navbarDropdownn">
+                    <?php
+                    $sql="select * from category";
+                    $ress=$conn->query($sql);
+                    foreach ($ress as $row) {
+                    echo "<a class='dropdown-item hvr-fade' href='category.php?id=".$row['id'] ."'>".$row['name']."</a>";
+                    };
+                    ?>
+
+                </div>
+            </li>
+
+            <li  class="nav-item active hvr-underline-from-center">
+
+                <a style="color: white;" class="nav-link" href="index.php"> Home <span class="sr-only">(current)</span></a>
+
+            </li>
+            <li class="nav-item hvr-underline-from-center  ">
+                <a style="color: white;" class="nav-link" href="ask.php">Ask </a>
+            </li>
+
+            <li style="color: white;"  class="nav-item hvr-underline-from-center ">
+                <a style="color: white;"  class="nav-link " href="#" tabindex="-1" aria-disabled="true">Jobs</a>
+            </li>
+            <li style="color: white;"  class="nav-item hvr-underline-from-center ">
+                <a style="color: white;"  class="nav-link " href="about.php" tabindex="-1" aria-disabled="true">About Us</a>
+            </li>
+            <li style="color: white;"  class="nav-item hvr-underline-from-center ">
+                <a style="color: white;"  class="nav-link " href="#" tabindex="-1" aria-disabled="true">Tracks</a>
+            </li>
+        </ul>
+
+        <!--search-->
+
+
+        <form class="form-inline my-2 my-lg-0">
+
+            <select class="form-control">
+                <option>search about</option>
+                <option>course</option>
+                <option>category</option>
+                <option>instructor</option>
+            </select>
+
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"  >
+
+            <button style="color:#cc9900;" class="btn  my-sm-0" type="submit"> <i class="fa fa-search "></i> </button>
+
+        </form>
+
+
+        <!--  user icon   -->
+        <?php  if (isset($_SESSION['login']) && $_SESSION['login'] == true) {?>
+
+        <div  class="  mx-5 dropdown">
+            <a style="color: white;" class=" dropdown" href="#" id="navbarDropdownn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span>
+                <?php
+                $ins_name = $conn->query("SELECT * FROM students WHERE email ='$email'");
+                foreach ($ins_name as $re)
+                    echo $re['first_name']."  ".$re['last_name'];
+                ?>
+            </span>
+
+                <img class="rounded-circle " src="images/myprofile.png" width="40px" height="40px" >
+            </a>
+
+            <div style="color: white;" class="dropdown-menu" aria-labelledby="navbarDropdownn">
+                <a class="dropdown-item hvr-underline-from-center" href="myProfile.php?email=<?=$email ?>">My Profile</a>
+                <a class="dropdown-item hvr-underline-from-center" href="#">Notifications<span style="background-color: #ffe699" class="badge badge-light">4</span></a>
+                <a class="dropdown-item hvr-underline-from-center" href="#">Messeges <span style="background-color: #ffe699" class="badge badge-light">4</span> </a>
+                <a class="dropdown-item hvr-underline-from-center" href="myProfile.php#my_courses">My courses</a>
+                <a class="dropdown-item hvr-underline-from-center" href="myProfile.php#saved_courses">Saved</a>
+                <a class="dropdown-item hvr-underline-from-center" href="#">Setting</a>
+                <a class="dropdown-item hvr-underline-from-center" href="logout.php"><i class="fa fa-sign-out"></i><span class="text-muted"> LOG OUT </span></a>
+
+            </div>
+        </div>
+        <?php  } ?>
+
+        <!--Regiseration-->
+        <?php
+        if (!(isset($_SESSION['login']) && $_SESSION['login'] == true)) {?>
+
+        <div>
+
+            <a  class="btn  hvr-underline-from-center" style="background: none;color: white; border: none;"  href="sign_view.php" >Log in</a>
+
+            <a  class="btn  hvr-underline-from-center" style="background: none;color: white; border: none;"  href="register_view.php">Register</a>
+        </div>
+
+        <?php  } ?>
+    </div>
+</nav>
+
+<body class="container">
+
+<!--header-->
+
+<div class="jumbotron">
+
+<!--    <h2 class="text-center m-2"> Course name  </h2>-->
+
+    <h2 class="text-center m-2" style="color: darkgoldenrod;"> course name </h2>
+
+</div>
+
+<!--buttons-->
+
+<div>
+
+    <div class=" row ">
+
+        <div  class="col">
+
+            <!-- Button trigger modal -->
+            <button type="button" class=" mybtn " data-toggle="modal" data-target="#exampleModal">
+                <i class="fa fa-plus"></i>
+                Add section
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-light ">
+                        <div class="modal-header">
+
+                            <h5 class="modal-title" id="exampleModalLabel">Add Section name</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="add_content.php?course_id=<?php echo $course_id ?>"  method="post">
+                                <input type="text" class="form-control" value="" name="section" >
+                                <br>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+
+                            <input type="submit" class="btn btn-primary" value="ADD" name="add">
+
+                            </form>
+                        </div>
+<!--                        <div class="modal-footer">-->
+
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="col ">
+            <a href="#">
+
+                <div class="mybtn">
+                    <i class="fa fa-file-video-o"></i>
+                    Add video
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+            <a href="#">
+
+                <div class="mybtn">
+                    <i class="fa fa-file "></i>
+                    Quiz
+                </div>
+            </a>
+        </div>
+
+        <div class="col">
+
+            <!-- Button trigger modal -->
+            <button type="button" class=" mybtn " data-toggle="modal" data-target="#exampleModal2">
+                Delete course
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content bg-light ">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Are you sure to delete this course ?!</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+<!--                        <div class="modal-body">-->
+<!--                            ...-->
+<!--                        </div>-->
+                        <div class="modal-footer">
+
+                      <a href="delete_course.php?id=<?php echo $course_id ?> " class="btn btn-secondary">
+                          yes </a>
+                            <button type="button" class="btn btn-primary">No</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<br>
+
+<!--course content -->
+
+<div class="container">
+
+
+        <div class="aaccordion"><span class="mr-3" >1)</span>section 1</div>
+         <div class="panel">
+
+        <div class="row">
+            <div class="col-lg-8 col-sml-12 ">
+                <ul class="list-group list-group-flush ">
+
+                    <li class="list-group-item"><strong>Course Content</strong></li>
+                    <li class="list-group-item">1 Dapibus ac facilisis in</li>
+                    <li class="list-group-item">2 Morbi leo risus</li>
+                    <li class="list-group-item">3 Porta ac consectetur ac</li>
+                    <li class="list-group-item">4 Vestibulum at eros</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="aaccordion"><span class="mr-3" >1)</span>section 1</div>
+    <div class="panel">
+
+        <div class="row">
+            <div class="col-lg-8 col-sml-12 ">
+                <ul class="list-group list-group-flush ">
+
+                    <li class="list-group-item"><strong>Course Content</strong></li>
+                    <li class="list-group-item">1 Dapibus ac facilisis in</li>
+                    <li class="list-group-item">2 Morbi leo risus</li>
+                    <li class="list-group-item">3 Porta ac consectetur ac</li>
+                    <li class="list-group-item">4 Vestibulum at eros</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="aaccordion"><span class="mr-3" >1)</span>section 1</div>
+
+    <div class="panel">
+
+        <div class="row">
+            <div class="col-lg-8 col-sml-12 ">
+                <ul class="list-group list-group-flush ">
+
+                    <li class="list-group-item"><strong>Course Content</strong></li>
+                    <li class="list-group-item">1 Dapibus ac facilisis in</li>
+                    <li class="list-group-item">2 Morbi leo risus</li>
+                    <li class="list-group-item">3 Porta ac consectetur ac</li>
+                    <li class="list-group-item">4 Vestibulum at eros</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <br><br>
+
+</div>
+
+<!--scripts-->
+
+<div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script>
+        var acc = document.getElementsByClassName("aaccordion");
+        var i;
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function() {
+                /* Toggle between adding and removing the "active" class,
+                to highlight the button that controls the panel */
+                this.classList.toggle("active");
+
+                /* Toggle between hiding and showing the active panel */
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+
+    </script>
+</div>
+<div id="script">
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+
+    <!-- < script for rating > -->
+    <script>
+
+        $('.star-rating input').click( function() {
+            starvalue = $(this).attr('value');
+            // iterate through the checkboxes and check those with values lower than or equal to the one you selected. Uncheck any other.
+            for(i=0; i<=5; i++){
+                if (i <= starvalue){
+                    $("#radio" + i).prop('checked', true);
+                    $("#star" + i).css('font-weight', 'bolder');
+                } else {
+                    $("#radio" + i).prop('checked', false);
+                    $("#star" + i).css('font-weight', '100');
+                }
+            }
+        });
+
+    </script>
+    <!-- < script for rating /> -->
+
+
+    <!-- /latest courses -->
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <!-- //js -->
+    <!-- Slider script -->
+    <script src="js/responsiveslides.min.js"></script>
+
+    <!-- for latest courses slider-js-file-->
+    <script src="js/owl.carousel.js"></script>
+    <!-- //for latest courses slider-js-file-->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 50, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo2").owlCarousel({
+
+                autoPlay: 50, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+            });
+        });
+    </script>
+    <!-- for latest courses slider-js-script // -->
+</div>
+
+
+</body>
+
+</html>

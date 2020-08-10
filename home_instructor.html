@@ -1,0 +1,174 @@
+<style>
+    .course_card{
+        background-color: whitesmoke;
+    }
+</style>
+
+<nav class="navbar  navbar-light fixed-top bg-dark p-0 ">
+    <div class="float-left">
+        <a class="navbar-brand" href="#"><h3 style="color:#cc9900; font-family: 'Arial Black';">3allemny</h3></a>
+    </div>
+
+    <div class=" mx-5 dropdown  " style="margin-right: 5%!important;">
+        <a style="color: white; " class=" dropdown-toggle " href="#" id="navbarDropdownn" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+            <span>
+                name name
+            </span>
+            <img class="rounded-circle " src="images/myprofile.png" width="40px" height="40px" >
+
+        </a>
+        <div style="color: white;" class="dropdown-menu" aria-labelledby="navbarDropdownn">
+            <a class="dropdown-item hvr-underline-from-center" href="myProfile.html">My Profile</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">Notifications</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">Messages</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">My courses</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">Setting</a>
+            <div class="dropdown-divider hvr-underline-from-center color1 "></div>
+            <a class="dropdown-item hvr-underline-from-center" href=""><i class="fa fa-sign-out"></i><span class="text-muted"> LOG OUT </span></a>
+        </div>
+    </div>
+
+</nav>
+
+<div class="container">
+    <div class="row " style="margin-top: 70px;">
+
+        <div class="col-lg-3 col-md-3 col-sm-12">
+
+            <div class="nav bg-light flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+                <a class=" nav-link bg-light text-dark active" id="v-pills-home-tab" data-toggle="pill"
+                   href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><h5>My
+                        Courses </h5></a>
+
+                <a class="  bg-light text-dark nav-link"
+                   href="add_course.html"><h5><i class="fa fa-plus"> </i> New Course </h5></a>
+
+                <a class="  bg-light text-dark nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#" role="tab"
+                   aria-controls="v-pills-profile" aria-selected="false"><h5><i class="fa fa-plus"> </i> New Exam </h5>
+                </a>
+
+                <a class="  bg-light text-dark nav-link" id="v-pills-settings-tab2" data-toggle="pill"
+                   href="#v-pills-settings" role="tab" aria-controls="v-pills-settings2" aria-selected="false"><h5><i
+                                class=""></i> Messeges</h5>
+                </a>
+            </div>
+
+        </div>
+
+        <div class="col-lg-8 col-md-8 col-sm-12">
+
+            <div class="tab-content" id="v-pills-tabContent">
+
+                <div class="row mt-1">
+
+                     <div class='col-lg-4 col-sm-12 col-md-6 mt-2'>
+
+                     <div class='course_card'>
+            <a href='inst_course2.html'> <div  class='course_top' >
+              <img alt=''  src='images/user.png'  class='course_img' >
+            </div></a>
+            
+             <div class='course_desc'>
+                 
+                 <h4 >inst name</h4>
+                 <h6> category   </h6>
+                 <i class='fa fa-star color1' > 4.5 </i>
+                 <h4> <span class='badge badge-secondary'>30$</span></h4>
+            </div>
+        </div>
+        </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div class='col-lg-4 col-sm-12 col-md-6 mt-2'>
+
+    <div class='course_card'>
+        <a href='inst_course2.html'> <div  class='course_top' >
+            <img alt=''  src='images/user.png'  class='course_img' >
+        </div></a>
+
+        <div class='course_desc'>
+
+            <h4 >inst name</h4>
+            <h6> category   </h6>
+            <i class='fa fa-star color1' > 4.5 </i>
+            <h4> <span class='badge badge-secondary'>30$</span></h4>
+        </div>
+    </div>
+</div>
+<div id="script">
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+
+    <!-- < script for rating > -->
+    <script>
+
+        $('.star-rating input').click( function() {
+            starvalue = $(this).attr('value');
+            // iterate through the checkboxes and check those with values lower than or equal to the one you selected. Uncheck any other.
+            for(i=0; i<=5; i++){
+                if (i <= starvalue){
+                    $("#radio" + i).prop('checked', true);
+                    $("#star" + i).css('font-weight', 'bolder');
+                } else {
+                    $("#radio" + i).prop('checked', false);
+                    $("#star" + i).css('font-weight', '100');
+                }
+            }
+        });
+
+    </script>
+    <!-- < script for rating /> -->
+
+
+    <!-- /latest courses -->
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <!-- //js -->
+    <!-- Slider script -->
+    <script src="js/responsiveslides.min.js"></script>
+
+    <!-- for latest courses slider-js-file-->
+    <script src="js/owl.carousel.js"></script>
+    <!-- //for latest courses slider-js-file-->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 50, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo2").owlCarousel({
+
+                autoPlay: 50, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+            });
+        });
+    </script>
+    <!-- for latest courses slider-js-script // -->
+</div>
+
+
+

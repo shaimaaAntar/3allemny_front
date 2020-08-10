@@ -1,0 +1,73 @@
+
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark p-0 ">
+    <a class="navbar-brand" href="#"><h3 style="color:#cc9900; font-family: 'Arial Black';">3allemny</h3></a>
+
+    <div class=" mx-5 dropdown" style="text-align: right;">
+        <a style="color: white;" class=" dropdown-toggle" href="#" id="navbarDropdownn" role="button"
+           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user fa-2x " style="color: #cc9900;"> </i>
+        </a>
+        <div style="color: white;" class="dropdown-menu" aria-labelledby="navbarDropdownn">
+            <a class="dropdown-item hvr-underline-from-center" href="#">My Profile</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">Notifications</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">Messeges</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">My courses</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">Saved</a>
+            <a class="dropdown-item hvr-underline-from-center" href="#">Setting</a>
+            <div class="dropdown-divider hvr-underline-from-center color1 "></div>
+            <a class="dropdown-item hvr-underline-from-center" href="#">To be instructor</a>
+        </div>
+    </div>
+
+</nav>
+<div class="container">
+    <div class="row " style="margin-top: 70px;">
+        <div class="col-md-9 col-sm-12">
+                <div class="alert <?php echo $css_class;?>">
+                </div>
+                   <form action="add_course_php.php" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <h4><label for="exampleFormControlInput1">Course Title</label></h4>
+                            <input type="text " class="form-control  " id="exampleFormControlInput1"
+                                   placeholder="Course Title" name="title">
+                            <div style="color: red">
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h4><label for="exampleFormControlSelect1">Category</label></h4>
+                            <select class="form-control" id="exampleFormControlSelect1" name="category">
+                               
+                            </select>
+                            <div style="color: red">
+                               
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h4><label for="exampleFormControlInput4">Description</label></h4>
+                            <input type="text" class="form-control" id="exampleFormControlInput4"
+                                   placeholder="Description" name="description">
+                            <div style="color: red">
+                               
+                            </div>
+                        </div>
+
+                        <h4><label> Attach image </label></h4>
+                        <input type="file" name="image"><br>
+                        <div style="color: red">
+                
+                        </div>
+                        <button type="submit" class="btn " style="margin-left: 45%; background-color: #cc9900"
+                                name="save">
+                            Save
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+</div>
+
+

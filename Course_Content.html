@@ -1,0 +1,110 @@
+<?php
+include('head.php');
+include 'conn.php';
+session_start();
+if (isset($_SESSION['login'])&&($_SESSION['login']==true)){
+    $email=$_SESSION['email'];
+    $user_type=$_SESSION['user_type'];
+    if ($user_type=='instructor'){
+        header('Location:home_instructor.php');
+    }
+//    elseif($user_type=='student') {
+//        header('Location:home.php');
+//    }
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> 3allemny</title>
+    <!--Required Meta-->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width , initial-scale=1 , shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS & js -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/hover.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/MyStyle.css">
+    <link rel="stylesheet" href="css/style_login.css">
+
+</head>
+
+<body>
+<?php include 'nav.php'?>
+    <div class="container mt-3 mt-5 " style="margin-bottom: 100px">
+
+        <div class="row" style="margin: 15px">
+
+            <div class="col-md-8">
+
+                <video controls style="width: 650px">
+
+                        <source src="CSS.mp4">
+
+                </video>
+
+                <div class="mt-3" >
+
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Q&A</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Posts</a>
+                    </li>
+                </ul>
+
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">1</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">2</div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">3</div>
+                </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-4 pre-scrollable ">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item ">
+                        <form class="form-inline  my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"  >
+                            <button style="color:#cc9900;" class="btn  my-sm-0" type="submit"> <i class="fa fa-search "></i> </button>
+                        </form>
+
+                    </li>
+
+                    <li class="list-group-item"><strong>Course Content</strong></li>
+                    <li class="list-group-item">1 Dapibus ac facilisis in</li>
+                    <li class="list-group-item">2 Morbi leo risus</li>
+                    <li class="list-group-item">3 Porta ac consectetur ac</li>
+                    <li class="list-group-item">4 Vestibulum at eros</li><li class="list-group-item">Dapibus ac facilisis in</li>
+                    <li class="list-group-item">5 Morbi leo risus</li>
+                    <li class="list-group-item">6 Porta ac consectetur ac</li>
+                    <li class="list-group-item">7 Vestibulum at eros</li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+
+<?php
+include('footer.php');
+include('scripts.php');
+
+?>
+</body>
+</html>

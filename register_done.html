@@ -1,0 +1,107 @@
+
+<style>
+    a{
+        color: #ba8b00;
+    }
+</style>
+
+<body>
+
+<div class="w-75 h-25 mx-auto mt-5 alert alert-success">
+    <h1 class="text-center text-muted"><b>Congratulations  </b>   <i class="fa fa-check"></i></h1>
+    <h4 class="text-center"> You have registered this course  </h4>
+</div>
+
+<div class="text-center">
+    <div class="btn   m-3">
+        <a href="index.html">
+            Home<i class="fa fa-home"></i>
+        </a>
+    </div>
+
+    <div class="btn   m-3">
+        <a href="myProfile.html#my_courses">
+            Your Courses <i class="fa fa-arrow-circle-right"></i>
+        </a>
+    </div>
+
+    <div class="btn   m-3">
+        <a href="course_content.html">
+
+            start course NOW <i class="fa fa-arrow-circle-right"></i>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+<div id="script">
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+
+    <!-- < script for rating > -->
+    <script>
+
+        $('.star-rating input').click( function() {
+            starvalue = $(this).attr('value');
+            // iterate through the checkboxes and check those with values lower than or equal to the one you selected. Uncheck any other.
+            for(i=0; i<=5; i++){
+                if (i <= starvalue){
+                    $("#radio" + i).prop('checked', true);
+                    $("#star" + i).css('font-weight', 'bolder');
+                } else {
+                    $("#radio" + i).prop('checked', false);
+                    $("#star" + i).css('font-weight', '100');
+                }
+            }
+        });
+
+    </script>
+    <!-- < script for rating /> -->
+
+
+    <!-- /latest courses -->
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <!-- //js -->
+    <!-- Slider script -->
+    <script src="js/responsiveslides.min.js"></script>
+
+    <!-- for latest courses slider-js-file-->
+    <script src="js/owl.carousel.js"></script>
+    <!-- //for latest courses slider-js-file-->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 50, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo2").owlCarousel({
+
+                autoPlay: 50, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+            });
+        });
+    </script>
+    <!-- for latest courses slider-js-script // -->
+</div>
+
+
+

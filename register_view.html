@@ -1,0 +1,193 @@
+
+<style>
+    body{
+        background: url("images/back.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+</style>
+<nav   class="navbar  p-0 navbar-expand-lg navbar-light fixed-top bg-dark  ">
+
+
+
+    <a class="navbar-brand" href="index.html"><h3 style="color:#cc9900; font-family: 'Arial Black';">3allemny</h3></a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon color11" ></span>
+    </button>
+    <!--  nav links  -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto " >
+            <li class="nav-item dropdown ">
+                <a style="color: white;" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categeories
+                </a>
+
+                <div style="color: white;" class="dropdown-menu" aria-labelledby="navbarDropdownn">
+
+     <a class='dropdown-item hvr-fade' href='category.html'>web</a>
+     <a class='dropdown-item hvr-fade' href='category.html'>web</a>
+     <a class='dropdown-item hvr-fade' href='category.html'>web</a>
+
+
+                </div>
+            </li>
+
+            <li  class="nav-item active hvr-underline-from-center">
+
+                <a style="color: white;" class="nav-link" href="index.html"> Home <span class="sr-only">(current)</span></a>
+
+            </li>
+            <li class="nav-item hvr-underline-from-center  ">
+                <a style="color: white;" class="nav-link" href="ask.html">Ask </a>
+            </li>
+
+            <li style="color: white;"  class="nav-item hvr-underline-from-center ">
+                <a style="color: white;"  class="nav-link " href="#" tabindex="-1" aria-disabled="true">Jobs</a>
+            </li>
+            <li style="color: white;"  class="nav-item hvr-underline-from-center ">
+                <a style="color: white;"  class="nav-link " href="about.html" tabindex="-1" aria-disabled="true">About Us</a>
+            </li>
+            <li style="color: white;"  class="nav-item hvr-underline-from-center ">
+                <a style="color: white;"  class="nav-link " href="#" tabindex="-1" aria-disabled="true">Tracks</a>
+            </li>
+        </ul>
+
+        <!--search-->
+
+        <a  class="btn  hvr-underline-from-center" style="background: none;color: white; border: none;"  href="sign_view.php" >Log in</a>
+
+    </div>
+
+</nav>
+
+<br>
+<br>
+<br>
+
+<div class="d-flex justify-content-center align-items-center  login-container">
+    <div style=" background: #eceae6a3; ">
+
+<!--    <div style="  padding: 10px; box-shadow:10px 10px 10px 10px #cc9900; border-radius: 10px; background: #ffe699">-->
+
+        <form class="login-form text-center" action='' method='POST'>
+
+            <h1 class="mb-5 color1 text-center text-uppercase">Register</h1>
+
+            <div class="form-row form-group">
+
+                <div class="col">
+                    <input type="text" class="rounded-pill form-control form-control-lg" placeholder="First name"
+                           name="fname">
+
+                </div>
+                <div class="col">
+                    <input type="text" class="rounded-pill form-control form-control-lg" placeholder="Last name"
+                           name="lname">
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <input type="email" class="rounded-pill form-control form-control-lg" placeholder="email" name="email">
+
+            </div>
+
+
+            <div class="form-group">
+                <input type="password" class="rounded-pill form-control form-control-lg" placeholder="Password"
+                       name="password">
+
+            </div>
+
+
+            <div class="form-group">
+                <input type="password" class="rounded-pill form-control form-control-lg" placeholder="Re-type Password"
+                       name="password2">
+            </div>
+
+            <div class="form-row form-group">
+                <div class="col">
+                    <input type="radio" name="user_type" value="student"> student
+                </div>
+
+                <div class="col">
+
+                    <input type="radio" name="user_type" value="instructor"> instructor
+
+                </div>
+
+            </div>
+
+            <button type="submit" class="btn btn-block btn-custom rounded-pill ">Sign up</button>
+            <p class="mt-3 font-weight-normal">Have an account? <a href="sign_view.php"><strong>Sign in </strong></a>
+            </p>
+
+        </form>
+    </div>
+</div>
+<div id="script">
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/popper.min.js"></script>
+
+    <!-- < script for rating > -->
+    <script>
+
+        $('.star-rating input').click( function() {
+            starvalue = $(this).attr('value');
+            // iterate through the checkboxes and check those with values lower than or equal to the one you selected. Uncheck any other.
+            for(i=0; i<=5; i++){
+                if (i <= starvalue){
+                    $("#radio" + i).prop('checked', true);
+                    $("#star" + i).css('font-weight', 'bolder');
+                } else {
+                    $("#radio" + i).prop('checked', false);
+                    $("#star" + i).css('font-weight', '100');
+                }
+            }
+        });
+
+    </script>
+    <!-- < script for rating /> -->
+
+
+    <!-- /latest courses -->
+    <!-- js -->
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+    <!-- //js -->
+    <!-- Slider script -->
+    <script src="js/responsiveslides.min.js"></script>
+
+    <!-- for latest courses slider-js-file-->
+    <script src="js/owl.carousel.js"></script>
+    <!-- //for latest courses slider-js-file-->
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo").owlCarousel({
+
+                autoPlay: 50, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+            });
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#owl-demo2").owlCarousel({
+
+                autoPlay: 50, //Set AutoPlay to 3 seconds
+                autoPlay: true,
+                items: 4,
+                itemsDesktop: [640, 5],
+                itemsDesktopSmall: [414, 4]
+            });
+        });
+    </script>
+    <!-- for latest courses slider-js-script // -->
+</div>

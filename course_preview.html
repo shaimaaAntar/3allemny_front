@@ -1,0 +1,248 @@
+<?php
+include 'conn.php';
+session_start();
+$student_id=null;
+//-----------------------
+//get user id
+
+$email = $_SESSION['email'];
+$res = $conn->query("select * from students where email ='$email'");
+foreach ($res as $resi)
+    $student_id = $resi['id'];
+//-----------------------
+$id = $_GET['id'];
+$result = $conn->query("select * from course where id ='$id'");
+foreach ($result as $row)
+    $course_name = $row['name'];
+$cat_id = $row['category_id'];
+$inst_id = $row['instructor_id'];
+
+$result2 = $conn->query("select * from category where id ='$cat_id'");
+foreach ($result2 as $row2)
+    $cat_name = $row2['name'];
+
+$result3 = $conn->query("select * from instructors where id ='$inst_id'");
+foreach ($result3 as $row3)
+    $inst_name = $row3['first_name'] . " " . $row3['last_name'];
+?>
+
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+
+<head>
+    <title> 3allemny</title>
+    <!--Required Meta-->
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width , initial-scale=1 , shrink-to-fit=no"/>
+
+    <!-- Bootstrap CSS & js -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/hover.css">
+    <!--<link rel="stylesheet" href="css/mdb.min.css">-->
+
+    <link rel="stylesheet" href="css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="css/MyStyle.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+<?php include 'nav.php'?>
+
+<header>
+
+    <div class="jumbotron mt-5 bg-light jumbotron-fluid ">
+        <div class="container">
+            <div class="row">
+
+                <div class="col">
+                    <h1><?= $course_name ?></h1>
+                    <h5><?php echo $cat_name ?></h5>
+                    <small>Instructor:</small>
+                    <h3 class=" color1"> <?php echo $inst_name ?> <a href="#"><i class="fa ml-2 fa-facebook-official"
+                                                                                 style="color: #0b2e13"></i></a></h3>
+                    <i class="fa fa-star" style="color: #002752"> 4.5 </i>
+                    <h4><span class="badge badge-dark">30$</span></h4>
+                </div>
+
+                <div class="col">
+
+                    <img src="images/<?php echo $row['img'] ?>" style="border-radius: 50%; width:200px; height:200px;">
+
+                </div>
+
+                <div class="col">
+                    <div class="btn-group btn-group-lg mt-5" role="group" aria-label="Basic example">
+
+                        <!-- enroll button-->
+
+                        <?php
+                        $sql = "SELECT * FROM  student_course WHERE course_id='$id' AND student_id ='$student_id'";
+                        $result = $conn->query($sql);
+                        $row = mysqli_num_rows($result);
+                        if ($row == 1) { ?>
+                            <a type="button" class="btn btn-warning">Go to Course <i
+                                        class="fa fa-arrow-circle-right"></i></a>
+                        <?php } else { ?>
+                            <a href="enroll.php?id=<?= $id ?>" class="btn btn-warning">Enroll Now</a>
+                        <?php } ?>
+
+                        <!--   save button -->
+
+                        <?php
+                        $sql = "SELECT * FROM  saved WHERE course_id='$id' AND student_id ='$student_id'";
+                        $result = $conn->query($sql);
+                        $row = mysqli_num_rows($result);
+                        if ($row == 1) { ?>
+                            <a type="button" class="btn btn-warning">Saved <i class="fa fa-star"></i></a>
+                        <?php } else { ?>
+                            <a href="save.php?id=<?= $id ?>" type="button" class="btn btn-warning">Save</a>
+                        <?php } ?>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</header>
+
+<main class="container">
+    <!--course contents-->
+    <div style="width: 25%; height: 25%">
+        <hr>
+        <h3> Course content</h3>
+        <hr>
+    </div>
+
+    <div class="container">
+
+        <?php
+        $course_id = $_GET['id'];
+        $result = $conn->query("select * from section where course_id = '$course_id'");
+        $i = 1;
+        while ($myresult = mysqli_fetch_assoc($result)) {
+
+            echo '<div class="aaccordion"><span class="mr-3" >' . $i++ . ')</span>' . $myresult['name'] . '</div>
+         <div class="panel">
+
+        <div class="row">
+            <div class="col-lg-8 col-sml-12 ">
+                <ul class="list-group list-group-flush ">
+
+                    <li class="list-group-item"><strong>Course Content</strong></li>
+                    <li class="list-group-item">1 Dapibus ac facilisis in</li>
+                    <li class="list-group-item">2 Morbi leo risus</li>
+                    <li class="list-group-item">3 Porta ac consectetur ac</li>
+                    <li class="list-group-item">4 Vestibulum at eros</li>
+                    <li class="list-group-item">Dapibus ac facilisis in</li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>';
+        };
+        ?>
+
+    </div>
+
+    <!-- related courses  -->
+    <br>
+    <div style="width: 25%; height: 25%">
+        <hr>
+        <h3> Related</h3>
+        <hr>
+    </div>
+
+    <div class="row  mt-4">
+        <div class="col-lg-4 col-md-6 mt-3">
+            <div class="card">
+                <a href="#">
+                    <img src="images/contact.jpg" class="card-img-top" alt="...">
+                </a>
+                <div style="background: #ffe699;" class="card-body">
+                    <h4 class="card-title">Course name</h4>
+                    <h5> category </h5>
+                    <i class="fa fa-star" style="color: red;"> 4.5 </i>
+                    <p class="card-text"> course description </p>
+                    <!--<a href="#" class="btn btn-primary">save</a>-->
+                    <h4><span class="badge badge-secondary">30$</span></h4>
+                    <!--<h1 class="badge badge-danger"> 30$ </h1>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mt-3">
+
+            <div class="card">
+                <a href="#">
+                    <img src="images/contact.jpg" class="card-img-top" alt="...">
+                </a>
+                <div style="background: #ffe699;" class="card-body">
+                    <h4 class="card-title">Course name</h4>
+                    <h5> category </h5>
+                    <i class="fa fa-star" style="color: red;"> 4.5 </i>
+                    <p class="card-text"> course description </p>
+                    <!--<a href="#" class="btn btn-primary">save</a>-->
+                    <h4><span class="badge badge-secondary">30$</span></h4>
+                    <!--<h1 class="badge badge-danger"> 30$ </h1>-->
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mt-3">
+            <!--<div class="col-lg-4 col-sm-1 col-md-2">-->
+
+            <div class="card">
+                <a href="#">
+                    <img src="images/contact.jpg" class="card-img-top" alt="...">
+                </a>
+                <div style="background: #ffe699;" class="card-body">
+                    <h4 class="card-title">Course name</h4>
+                    <h5> category </h5>
+                    <i class="fa fa-star" style="color: red;"> 4.5 </i>
+                    <p class="card-text"> course description </p>
+                    <!--<a href="#" class="btn btn-primary">save</a>-->
+                    <h4><span class="badge badge-secondary">30$</span></h4>
+                    <!--<h1 class="badge badge-danger"> 30$ </h1>-->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</main>
+
+<!-- container end -->
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script>
+    var acc = document.getElementsByClassName("aaccordion");
+    var i;
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            /* Toggle between adding and removing the "active" class,
+            to highlight the button that controls the panel */
+            this.classList.toggle("active");
+
+            /* Toggle between hiding and showing the active panel */
+            var panel = this.nextElementSibling;
+            if (panel.style.display === "block") {
+                panel.style.display = "none";
+            } else {
+                panel.style.display = "block";
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>
